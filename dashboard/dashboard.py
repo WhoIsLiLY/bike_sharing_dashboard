@@ -46,16 +46,24 @@ for column in datetime_columns:
 
 # Sidebar Filters
 with st.sidebar:
-    #st.image("https://storage.googleapis.com/gweb-uniblog-publish-prod/original_images/image1_hH9B4gs.jpg")
-    st.title('Interactive Visualitation')
-    st.write('**Data yang divisualisasikan dan informasi yang disampaikan akan mengikuti range tanggal dibawah**')
-    
-    start_date, end_date = st.date_input(
+    st.title('Interactive Visualization')
+    st.write('**Data yang divisualisasikan dan informasi yang disampaikan akan mengikuti range tanggal di bawah**')
+
+    # Tanggal input dengan minimal dan maksimal yang valid
+    date_range = st.date_input(
         label='Select Date Range',
         min_value=days_df["dteday"].min(),
         max_value=days_df["dteday"].max(),
-        value=[days_df["dteday"].min(), days_df["dteday"].max()]
+        value=[days_df["dteday"].min(), days_df["dteday"].max()],
+        help="Pilih rentang tanggal."
     )
+
+    # Memastikan ada dua tanggal yang dipilih dalam rentang (start dan end)
+    if len(date_range) == 2:
+        start_date, end_date = date_range
+        st.success(f"Range tanggal dipilih dari {start_date} hingga {end_date}.")
+    else:
+        st.warning("Mohon pilih rentang tanggal (dua tanggal).")
 
 # Filtering the data based on the selected date range
 main_df_days = days_df[(days_df["dteday"] >= pd.to_datetime(str(start_date))) & 
