@@ -300,8 +300,8 @@ else:
     st.pyplot(plt)
 
     # Menambahkan keterangan tambahan
-    st.write(f"Bulan dengan penyewaan tertinggi di tahun 2011 adalah **{max_month_2011}** dengan total sewa sebesar {monthly_sales_2011['count_cr'].idxmax()}.")
-    st.write(f"Bulan dengan penyewaan terendah di tahun 2011 adalah **{min_month_2011}** dengan total sewa sebesar {monthly_sales_2011['count_cr'].idxmin()}.")
+    st.write(f"Bulan dengan penyewaan tertinggi di tahun 2011 adalah **{max_month_2011}**.")
+    st.write(f"Bulan dengan penyewaan terendah di tahun 2011 adalah **{min_month_2011}**.")
 
 # Memfilter data untuk tahun 2012
 data_2012 = main_df_days[main_df_days['year'] == 2012]
@@ -319,7 +319,6 @@ else:
     # Mendapatkan bulan dengan jumlah penyewaan tertinggi dan terendah
     max_month_2012 = monthly_sales_2012.loc[monthly_sales_2012['count_cr'].idxmax()]['month']
     min_month_2012 = monthly_sales_2012.loc[monthly_sales_2012['count_cr'].idxmin()]['month']
-    st.write(max_month_2012)
     colors = ['#FF3333' if month == max_month_2012 else ('#64B5F6' if month == min_month_2012 else '#4CAF50') for month in monthly_sales_2012['month']]
 
     # Membuat bar plot untuk melihat penjualan per bulan di tahun 2012
@@ -340,5 +339,5 @@ else:
     st.pyplot(plt)
 
     # Menambahkan keterangan tambahan
-    st.write(f"Bulan dengan penyewaan tertinggi di tahun 2012 adalah **{max_month_2012}** dengan total sewa sebesar {monthly_sales_2011[monthly_sales_2012['count_cr'].idxmax()]['count_cr']}.")
-    st.write(f"Bulan dengan penyewaan terendah di tahun 2012 adalah **{min_month_2012}** dengan total sewa sebesar {monthly_sales_2012['count_cr'].idxmin()}.")
+    st.write(f"Bulan dengan penyewaan tertinggi di tahun 2012 adalah **{max_month_2012}**.")
+    st.write(f"Bulan dengan penyewaan terendah di tahun 2012 adalah **{min_month_2012}**.")
