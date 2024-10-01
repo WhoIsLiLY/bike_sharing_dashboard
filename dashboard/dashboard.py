@@ -49,7 +49,7 @@ with st.sidebar:
     st.title('Interactive Visualization')
     st.write('**Data yang divisualisasikan dan informasi yang disampaikan akan mengikuti range tanggal di bawah**')
 
-    # Menggunakan tuple untuk menghindari error
+    # Tanggal input dengan minimal dan maksimal yang valid
     date_range = st.date_input(
         label='Select Date Range',
         min_value=days_df["dteday"].min(),
@@ -58,22 +58,12 @@ with st.sidebar:
         help="Pilih rentang tanggal."
     )
 
-    # Memastikan bahwa rentang tanggal berisi dua nilai (start dan end date)
-    if isinstance(date_range, tuple) and len(date_range) == 2:
+    # Memastikan ada dua tanggal yang dipilih dalam rentang (start dan end)
+    if len(date_range) == 2:
         start_date, end_date = date_range
         st.success(f"Range tanggal dipilih dari {start_date} hingga {end_date}.")
-        
-        # Filtering the data based on the selected date range
-        main_df_days = days_df[(days_df["dteday"] >= pd.to_datetime(str(start_date))) & 
-                               (days_df["dteday"] <= pd.to_datetime(str(end_date)))]
-        
-        main_df_hour = hours_df[(hours_df["dteday"] >= pd.to_datetime(str(start_date))) & 
-                                (hours_df["dteday"] <= pd.to_datetime(str(end_date)))]
-        
-        # Tampilkan visualisasi atau lakukan proses selanjutnya
     else:
-        st.warning("Mohon pilih rentang tanggal yang lengkap (dua tanggal).")
-
+        st.warning("Abaikan pesan error yang muncul. Mohon pilih rentang tanggal akhirnya (dua tanggal).")
 
 # Filtering the data based on the selected date range
 main_df_days = days_df[(days_df["dteday"] >= pd.to_datetime(str(start_date))) & 
