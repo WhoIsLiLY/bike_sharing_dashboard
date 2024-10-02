@@ -274,7 +274,7 @@ try:
     data_2011 = main_df_days[main_df_days['year'] == 2011]
 
     if data_2011.empty:
-        st.write("Tidak ada data untuk 2011")
+        st.subheader("Tidak ada data untuk 2011")
     else:
         # Menghitung jumlah penyewaan sepeda per bulan di tahun 2011
         monthly_sales_2011 = data_2011.groupby('month')['count_cr'].sum().reset_index()
