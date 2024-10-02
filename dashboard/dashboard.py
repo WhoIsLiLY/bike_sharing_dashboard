@@ -4,7 +4,7 @@ import matplotlib.dates as mdates
 import seaborn as sns
 import streamlit as st
 
-# Set Seaborn theme and font scale
+# Kita set tema seaborn
 sns.set(style='darkgrid', font_scale=1.2)
 
 def get_total_count_by_hour_df(hour_df):
@@ -44,7 +44,7 @@ for column in datetime_columns:
     days_df[column] = pd.to_datetime(days_df[column])
     hours_df[column] = pd.to_datetime(hours_df[column])
 
-# Sidebar Filters
+# Buat sistem filtering
 with st.sidebar:
     st.title('Interactive Visualization')
     st.write('**Data yang divisualisasikan dan informasi yang disampaikan akan mengikuti range tanggal di bawah**')
@@ -314,7 +314,7 @@ else:
 # Memfilter data untuk tahun 2012
 data_2012 = main_df_days[main_df_days['year'] == 2012]
 if data_2012.empty:
-    st.write("Tidak ada data untuk 2012")
+    st.subheader("Tidak ada data untuk 2012")
 else:
     # Menghitung jumlah penyewaan sepeda per bulan di tahun 2012
     monthly_sales_2012 = data_2012.groupby('month')['count_cr'].sum().reset_index()
@@ -330,7 +330,7 @@ else:
     colors = ['#FF3333' if month == max_month_2012 else ('#64B5F6' if month == min_month_2012 else '#4CAF50') for month in monthly_sales_2012['month']]
 
     # Membuat bar plot untuk melihat penjualan per bulan di tahun 2012
-    st.subheader("Jumlah Penyewaan Sepeda per Bulan di Tahun 2012")
+    st.subheader("Jumlah Penyewaan Sepeda per Bulan di Tahun 2012 TES")
 
     plt.figure(figsize=(12, 6))
     plt.bar(monthly_sales_2012['month'], monthly_sales_2012['count_cr'], color=colors, alpha=0.7)
