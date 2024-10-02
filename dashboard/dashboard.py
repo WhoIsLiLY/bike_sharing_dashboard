@@ -51,7 +51,7 @@ with st.sidebar:
 
     # Tanggal input dengan minimal dan maksimal yang valid
     date_range = st.date_input(
-        label='Select Date Range',
+        label='Pilih rentang tanggal',
         min_value=days_df["dteday"].min(),
         max_value=days_df["dteday"].max(),
         value=[days_df["dteday"].min(), days_df["dteday"].max()],
