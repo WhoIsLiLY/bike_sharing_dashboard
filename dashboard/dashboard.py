@@ -65,14 +65,17 @@ with st.sidebar:
     else:
         st.warning("Abaikan pesan error yang muncul. Mohon pilih rentang tanggal akhirnya (dua tanggal).")
 
-# Filtering the data based on the selected date range
-main_df_days = days_df[(days_df["dteday"] >= pd.to_datetime(str(start_date))) & 
-                       (days_df["dteday"] <= pd.to_datetime(str(end_date)))]
+try:
+    # Filtering data berdasarkan tanggal awal dan tanggal akhir
+    main_df_days = days_df[(days_df["dteday"] >= pd.to_datetime(str(start_date))) & 
+                        (days_df["dteday"] <= pd.to_datetime(str(end_date)))]
 
-main_df_hour = hours_df[(hours_df["dteday"] >= pd.to_datetime(str(start_date))) & 
-                        (hours_df["dteday"] <= pd.to_datetime(str(end_date)))]
-
-# Check if the data is empty after filtering
+    main_df_hour = hours_df[(hours_df["dteday"] >= pd.to_datetime(str(start_date))) & 
+                            (hours_df["dteday"] <= pd.to_datetime(str(end_date)))]
+except Exception as e:
+    st.error(f"Terjadi kesalahan saat memfilter data: {str(e)}")
+    st.header("Pilih Tanggal Akhirnya")
+# Pengecekan jika tanggal tidak ditemukan data
 if main_df_days.empty or main_df_hour.empty:
     st.warning("Pilih target akhir untuk menampilkan visualisasi data")
 else:
@@ -330,7 +333,7 @@ else:
     colors = ['#FF3333' if month == max_month_2012 else ('#64B5F6' if month == min_month_2012 else '#4CAF50') for month in monthly_sales_2012['month']]
 
     # Membuat bar plot untuk melihat penjualan per bulan di tahun 2012
-    st.subheader("Jumlah Penyewaan Sepeda per Bulan di Tahun 2012 TES")
+    st.subheader("Jumlah Penyewaan Sepeda per Bulan di Tahun 2012")
 
     plt.figure(figsize=(12, 6))
     plt.bar(monthly_sales_2012['month'], monthly_sales_2012['count_cr'], color=colors, alpha=0.7)
