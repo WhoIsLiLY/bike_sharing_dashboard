@@ -103,10 +103,10 @@ try:
             st.metric("Total Registered Users", value=f"{total_sum_registered:,}")
 
         with col4:
-            # After processing:
+            # Setelah processing
             total_sum_casual = cas_df['casual_sum'].sum()  # Make sure this is a scalar
 
-            # Display metric correctly:
+            # Display metric
             st.metric("Total Casual Users", value=f"{total_sum_casual:,.0f}")  # Formatted as an integer
 
     # Membuat figure dengan ukuran yang besar
@@ -154,7 +154,7 @@ try:
     # Mengatur label dan judul
     plt.xlabel('Tahun', fontsize=12)
     plt.ylabel('Jumlah Penjualan (Sepeda Disewa)', fontsize=12)
-    plt.title('Tren Penjualan Per Tahun', fontsize=14)
+    plt.title('Tren Penjualan Per Tahun (fixed 2011 & 2012)', fontsize=14)
 
     # Menampilkan plot di Streamlit
     st.pyplot(plt)
@@ -234,14 +234,14 @@ try:
     st.write(f"Ini menunjukkan preferensi yang kuat terhadap model pelanggan '{label_dominant}' di antara pelanggan.")
 
     # =================================================================================================================
-    # Calculate total rentals per hour
+    # Kalkulasi total rental per jamnya
     hourly_rentals = main_df_hour.groupby('hours')['count_cr'].sum()
 
-    # Determine the peak and lowest hour dynamically based on current data
+    # Kita determinasi jam tertinggi dan terendahnya
     peak_hour = hourly_rentals.idxmax()  # Peak hour
     lowest_hour = hourly_rentals.idxmin()  # Lowest hour
 
-    # Define color palette, highlight peak and lowest hours dynamically
+    # Define color palette, highlight jam tertinggi and terendah secara dinamin
     colors = ['#4CAF50' if hour != peak_hour and hour != lowest_hour else '#FF3333' for hour in hourly_rentals.index]
 
     # Plot the total rentals per hour with customized colors
